@@ -78,7 +78,11 @@
         }
         
         .dark .stats-card .text-gray-600 {
-            color: #e5e7eb;
+            color: #e5e7eb !important;
+        }
+        
+        .dark .stats-card .text-gray-900 {
+            color: #ffffff !important;
         }
         .feature-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8));
@@ -94,12 +98,14 @@
         
         .dark .feature-card h2,
         .dark .feature-card h3,
-        .dark .feature-card h4 {
-            color: #ffffff;
+        .dark .feature-card h4,
+        .dark .feature-card .text-gray-900 {
+            color: #ffffff !important;
         }
         
-        .dark .feature-card p {
-            color: #e5e7eb;
+        .dark .feature-card p,
+        .dark .feature-card .text-gray-600 {
+            color: #e5e7eb !important;
         }
         .slide-up {
             animation: slide-up 0.4s ease-out;
@@ -138,6 +144,22 @@
             transform: translateY(-3px) scale(1.01);
             border-color: #3b82f6;
             box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.15);
+        }
+        
+        .dark .ad-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+        
+        .dark .ad-card h4,
+        .dark .ad-card .text-gray-900 {
+            color: #ffffff !important;
+        }
+        
+        .dark .ad-card p,
+        .dark .ad-card .text-gray-500,
+        .dark .ad-card .text-gray-600 {
+            color: #e5e7eb !important;
         }
     </style>
 </head>
