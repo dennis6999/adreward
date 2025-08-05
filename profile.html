@@ -13,6 +13,11 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             min-height: 100vh;
             overflow-x: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        body.dark {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
         }
         .gradient-bg {
             background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
@@ -31,6 +36,12 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(30px);
             border-top: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .dark .mobile-nav {
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         .nav-item {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -52,17 +63,34 @@
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .dark .stats-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         .feature-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8));
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .dark .feature-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         .profile-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8));
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .dark .profile-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         .profile-card:hover {
             transform: translateY(-3px) scale(1.01);
@@ -73,6 +101,11 @@
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
+        }
+        
+        .dark .setting-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         .setting-card:hover {
             transform: translateY(-2px);
@@ -187,6 +220,14 @@
                 </div>
             </div>
             <div class="flex items-center space-x-3">
+                <button id="theme-toggle" class="p-3 rounded-2xl bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-all duration-300 shadow-lg">
+                    <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
                 <button class="p-3 rounded-2xl bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-all duration-300 shadow-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
@@ -377,12 +418,40 @@
         // Premium hover effects
         document.querySelectorAll('.card-hover, .profile-card, .setting-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
+                this.style.transform = 'translateY(-3px) scale(1.01)';
             });
             
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) scale(1)';
             });
+        });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        const body = document.body;
+
+        // Check for saved theme preference or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            body.classList.add('dark');
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            
+            if (body.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            } else {
+                localStorage.setItem('theme', 'light');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            }
         });
     </script>
 </body>
